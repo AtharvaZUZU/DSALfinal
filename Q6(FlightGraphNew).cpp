@@ -1,96 +1,55 @@
-/*--------------------------------------------------------------------------------------------------------------------------------------------------
-
-6. There are flight paths between cities. If there is a flight between city A and city B then there is an edge between the cities.
-The cost of the edge can be the time that flight take to reach city B from A, or the amount of fuel used for the journey. 
-Represent this as a graph. The node can be represented by airport name or name of the city. 
-Use adjacency list representation of the graph or use adjacency matrix representation of the graph. 
-Check whether the graph is connected or not. Justify the storage representation used.*/
-
 #include <iostream>
+#include <vector>
 using namespace std;
 
-class graph
-{
+int main(){
+
+	int n;
+	cout << "Enter the Number of cities" << endl;
+	cin >> n;
+
+	vector<string> cities(n);
+
+	string str;
+	for (int i=0; i<n; i++){
+		cout << i << ") City Name -> ";
+		cin >> str;
+		cities[i] = str;
+	}
+
+	int arr[n][n];
+	for (int i=0; i<n; i++){
+		for (int j=0; j<n; j++){
+			cout << "Distance between -> " << cities[i] << " to " << cities[j] << " ";
+			cin >> arr[i][j];
+		}
+	}
+
+	cout << "Given Graph is" << endl;
+
+	for (int i=0; i<n; i++){
+		for (int j=0; j<n; j++){
+			cout << arr[i][j] << " ";
+		}cout << endl;
+	}cout << endl;
 	
-int a[5][5],flag;
-string c[5];
+	bool flag = true;
 
-public:
+	for (int i=0; i<n; i++){
+		for (int j=0; j<n; j++){
+			if (i != j && arr[i][j] == arr[j][i]){
+				continue;
+			}
+			if (arr[i][j] != arr[j][i]){
+				flag = false;
+			}
+		}
+	}
 
-void city(int n)
-{
-cout<<"Enter the names of cities : "<<endl;
-for(int i=0;i<n;i++)
-{
-cout << i+1 << " . City Name : ";
-cin>>c[i];
-}
-}
-
-void time(int n)
-{
-cout<< "Enter time taken to travel from city to city "<< endl;
-for(int i=0;i<n;i++)
-{
-for(int j=0;j<n;j++)
-{
-cout << "Time taken to travel from  " << c[i] << " to " << c[j] << " : ";
-cin>>a[i][j];
-}
-}
+	if (flag == true){
+		cout << "Graph is connected" << endl;
+	}
+	else cout << "Graph is not connected" << endl;
 }
 
-void ajd_mat(int n)
-{
-cout<<"adjacency matrix : "<<endl;
-for(int i=0;i<n;i++)
-{
-for(int j=0;j<n;j++)
-{
-cout<<a[i][j]<<"\t";
-}
-cout<<endl;
-}
-}
 
-void connected(int n)
-{
-for(int i=0;i<n;i++)
-{
-for(int j=0;j<n;j++)
-{
-if( a[i][j] != a[j][i])
-{
-	flag = 0;
-}
-
-}
-}
-
-if (flag ==0)
-{
-cout<<"The graph is not connected"<<endl;
-}
-
-else
-{
-cout<<"The graph is connected"<<endl;
-}
-}
-};
-
-
-int main()
-{
-int n;
-cout<<"Enter the number of Cities : "<<endl;
-cin>>n;	
-
-graph g;
-
-g.city(n);
-g.time(n);
-g.ajd_mat(n);
-g.connected(n);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-}
