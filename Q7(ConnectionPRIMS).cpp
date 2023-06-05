@@ -1,3 +1,4 @@
+//hehehehe//
 #include<iostream>
 using namespace std;
 
@@ -20,7 +21,7 @@ void tree::input()
 		visited[i]=0;
 		for(j=0;j<v;j++)
 		{
-			a[i][j]=0;
+			a[i][j]=999;
 		}
 	}
 
@@ -43,7 +44,7 @@ void tree::display()
 	for(i=0;i<v;i++)
 	{
 		cout<<endl;
-		for(j=0;j<e;j++)
+		for(j=0;j<v;j++)
 		{
 			cout<<a[i][j]<<"   ";
 		}
@@ -79,7 +80,7 @@ void tree::minimum()
 		visited[p]=1;
 		visited[q]=1;
 		total=total+min;
-		cout<<"Minimum cost connection is"<<(p+1)<<" -> "<<(q+1)<<"  with charge : "<<min<< endl;
+		cout<<"Minimum cost connection is "<<(p+1)<<" -> "<<(q+1)<<"  with charge : "<<min<< endl;
 		
 	}
 	cout<<"The minimum total cost of connections of all branches is: "<<total<<endl;
@@ -93,7 +94,7 @@ int main()
 	{
 		cout<<"==========PRIM'S ALGORITHM================="<<endl;
 		cout<<"\n1.INPUT\n \n2.DISPLAY\n \n3.MINIMUM\n"<<endl;
-		cout<<"Enter your choice :"<<endl;
+		cout<<"Enter your choice(exit=0) :"<<endl;
 		cin>>ch;
 	
 	switch(ch)
@@ -111,6 +112,6 @@ int main()
 		break;
 	}
 	
-	}while(ch!=4);
+	}while(ch!=0);
 	return 0;
 }
