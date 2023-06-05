@@ -40,7 +40,7 @@ def union(L1,L2):
 	
 def diff(L1,L2):
 	res=[]
-	for stud in L2:
+	for stud in L1:
 		if not stud in L2:
 			res.append(stud)
 	return res
