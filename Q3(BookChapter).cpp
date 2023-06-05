@@ -1,101 +1,101 @@
-#include <iostream>
-#include <vector>
-
-struct Subsection {
-    std::string title;
+#include<iostream>
+using namespace std;
+struct node
+{
+        string data;
+        node* child[10];
+        int count;
 };
-
-struct Section {
-    std::string title;
-    std::vector<Subsection> subsections;
-};
-
-struct Chapter {
-    std::string title;
-    std::vector<Section> sections;
-};
-
-struct Book {
-    std::string title;
-    std::vector<Chapter> chapters;
-};
-
-void printNodes(const Book& book) {
-    std::cout << "Book: " << book.title << std::endl;
-
-    for (const auto& chapter : book.chapters) {
-        std::cout << "Chapter: " << chapter.title << std::endl;
-
-        for (const auto& section : chapter.sections) {
-            std::cout << "Section: " << section.title << std::endl;
-
-            for (const auto& subsection : section.subsections) {
-                std::cout << "Subsection: " << subsection.title << std::endl;
-            }
+class csbook
+{
+public:
+        node* root;
+        csbook()
+        {
+                root=NULL;
         }
-    }
+    void create();
+    void display();
+};
+void csbook::create()
+{
+        int i,j,k;
+        root=new node;
+ cout<<"Enter the book name \n";
+ cin>>root->data;
+ cout<<"How many chapters \n";
+ cin>>root->count;
+
+ for(i=1;i<=root->count;i++)
+ {
+         cout<<"Enter the chapter name \n";
+         root->child[i]=new node;
+     cin>>root->child[i]->data;
+     cout<<"How many sections \n";
+     cin>>root->child[i]->count;
+
+
+     for(j=1;j<=root->child[i]->count;j++)
+     {
+         cout<<"Enter the sections name \n";
+         root->child[i]->child[j]=new node;
+         cin>>root->child[i]->child[j]->data;
+          cout<<"How many sub-sections \n";
+     cin>>root->child[i]->child[j]->count;
+     
+     
+      for(k=1;k<=root->child[i]->child[j]->count;k++)
+     {
+         cout<<"Enter the sub-sections name \n";
+         root->child[i]->child[j]->child[k]=new node;
+         cin>>root->child[i]->child[j]->child[k]->data;
+     }
+ }
 }
+}
+void csbook::display()
+{
+        int i,j,k;
 
-int main() {
-    Book book;
-    book.title = "Sample Book";
+ cout<<"the book name : "<<root->data<<"\n";
+ for(i=1;i<=root->count;i++)
+ {
+   cout<<"the chapter "<<i<<" : "<<root->child[i]->data<<"\n";
 
-    // Chapter 1
-    Chapter chapter1;
-    chapter1.title = "Chapter 1";
-
-    // Section 1.1
-    Section section11;
-    section11.title = "Section 1.1";
-
-    Subsection subsection111;
-    subsection111.title = "Subsection 1.1.1";
-    section11.subsections.push_back(subsection111);
-
-    Subsection subsection112;
-    subsection112.title = "Subsection 1.1.2";
-    section11.subsections.push_back(subsection112);
-
-    chapter1.sections.push_back(section11);
-
-    // Section 1.2
-    Section section12;
-    section12.title = "Section 1.2";
-
-    Subsection subsection121;
-    subsection121.title = "Subsection 1.2.1";
-    section12.subsections.push_back(subsection121);
-
-    Subsection subsection122;
-    subsection122.title = "Subsection 1.2.2";
-    section12.subsections.push_back(subsection122);
-
-    chapter1.sections.push_back(section12);
-
-    book.chapters.push_back(chapter1);
-
-    // Chapter 2
-    Chapter chapter2;
-    chapter2.title = "Chapter 2";
-
-    // Section 2.1
-    Section section21;
-    section21.title = "Section 2.1";
-
-    Subsection subsection211;
-    subsection211.title = "Subsection 2.1.1";
-    section21.subsections.push_back(subsection211);
-
-    Subsection subsection212;
-    subsection212.title = "Subsection 2.1.2";
-    section21.subsections.push_back(subsection212);
-
-    chapter2.sections.push_back(section21);
-
-    book.chapters.push_back(chapter2);
-
-    // Print all the nodes in the tree
-    printNodes(book);
-
-return 0;
+     for(j=1;j<=root->child[i]->count;j++)
+     {
+         cout<<"the sections "<<i<<" : "<<root->child[i]->child[j]->data<<"\n";
+     
+     for(k=1;k<=root->child[i]->child[j]->count;k++)
+     {
+         cout<<"the sub-sections "<<i<<" : "<<root->child[i]->child[j]->child[k]->data<<"\n";
+     }
+}
+}
+}
+int main()
+{
+        csbook p;
+        char ans;
+    int ch;
+    do
+    {
+   cout<<"-----------MAIN MENU------------ \n";
+   cout<<"1.for create \n";
+   cout<<"2.for display \n";
+   cin>>ch;
+   switch(ch)
+   {
+   case 1 :
+           p.create();
+           break;
+   case 2 :
+           p.display();
+           break;
+   }
+   cout<<"Do u want to continue";
+   cin>>ans;
+    }
+    while(ans=='y'||ans=='Y');
+    return 0;
 }
